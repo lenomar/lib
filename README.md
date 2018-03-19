@@ -1,2 +1,2 @@
 # lib
-common library
+golang common library
