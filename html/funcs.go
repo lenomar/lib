@@ -5,8 +5,9 @@ import (
 	"html/template"
 	"net/url"
 	"strconv"
-	"teamlint/fitness/helpers/pager"
 	"time"
+
+	"github.com/teamlint/lib/html/pager"
 )
 
 // Checked 根据bool参数值返回html属性checked

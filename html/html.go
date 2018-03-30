@@ -20,5 +20,8 @@ func AddFuncs(funcer Funcer) {
 	funcer.AddFunc("readonly", Readonly)
 	funcer.AddFunc("disabled", Disabled)
 	funcer.AddFunc("now", Now)
+	funcer.AddFunc("year", Year)
+	funcer.AddFunc("month", Month)
+	funcer.AddFunc("day", Day)
 	funcer.AddFunc("text", lib.Text)
 }
