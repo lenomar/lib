@@ -2,6 +2,7 @@ package html
 
 import (
 	"fmt"
+	"strconv"
 	"testing"
 	"time"
 
@@ -21,23 +22,51 @@ const (
 	EnumActionRetrive EnumAction = 2
 	EnumActionUpdate  EnumAction = 3
 	EnumActionDelete  EnumAction = 4
+	EnumActionAll     EnumAction = -1
 
 	EnumMethodGet  EnumMethod = "GET"
 	EnumMethodPost EnumMethod = "POST"
 )
 
 func (enum EnumAction) Text() string {
-	switch enum {
-	case EnumActionCreate:
-		return "创建"
-	case EnumActionRetrive:
-		return "查找"
-	case EnumActionUpdate:
-		return "更新"
-	case EnumActionDelete:
-		return "删除"
+	/*
+		switch enum {
+		case EnumActionCreate:
+			return "创建"
+		case EnumActionRetrive:
+			return "查找"
+		case EnumActionUpdate:
+			return "更新"
+		case EnumActionDelete:
+			return "删除"
+		}
+		return ""
+	*/
+	if val, ok := actionMap[enum]; ok {
+		return val
 	}
 	return ""
+}
+
+var actionMap = map[EnumAction]string{
+	EnumActionAll:     "全部",
+	EnumActionCreate:  "创建",
+	EnumActionRetrive: "查找",
+	EnumActionUpdate:  "更新",
+	EnumActionDelete:  "删除",
+}
+
+func (enum EnumAction) Map() map[EnumAction]string {
+	return actionMap
+}
+func (enum EnumAction) SelectList() []EnumAction {
+	var items = make([]EnumAction, 0)
+	items = append(items, EnumActionAll)
+	items = append(items, EnumActionCreate)
+	items = append(items, EnumActionRetrive)
+	items = append(items, EnumActionUpdate)
+	items = append(items, EnumActionDelete)
+	return items
 }
 
 var EnumMethodText = map[EnumMethod]string{
@@ -56,6 +85,15 @@ var EnumMethodText = map[EnumMethod]string{
 // }
 func (f *Foo) Text() string {
 	return fmt.Sprintf("foo:{Name:%v,Age:%v,IsApproved:%v}", f.Name, f.Age, f.IsApproved)
+}
+func (f *Foo) List() []*Foo {
+	var items []*Foo
+	for i := 0; i < 6; i++ {
+		item := new(Foo)
+		item.Name = "Item " + strconv.Itoa(i)
+		items = append(items, item)
+	}
+	return items
 }
 
 func TestFunc(t *testing.T) {

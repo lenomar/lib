@@ -1,6 +1,7 @@
 package lib
 
 import (
+	"fmt"
 	"reflect"
 )
 
@@ -20,6 +21,5 @@ func Text(v interface{}) string {
 			return result[0].Interface().(string)
 		}
 	}
-	// String 方法
-	return val.String()
+	return fmt.Sprintf("%v", val)
 }

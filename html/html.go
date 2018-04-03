@@ -24,4 +24,7 @@ func AddFuncs(funcer Funcer) {
 	funcer.AddFunc("month", Month)
 	funcer.AddFunc("day", Day)
 	funcer.AddFunc("text", lib.Text)
+	funcer.AddFunc("select", Select)
+	funcer.AddFunc("selectWith", SelectWith)
+	funcer.AddFunc("selectOption", SelectOption)
 }
