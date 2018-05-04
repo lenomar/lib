@@ -37,9 +37,11 @@ func DateFormat(v ...interface{}) string {
 		}
 		switch val := v[0].(type) {
 		case time.Time:
-			return val.Format(format)
+			if !val.IsZero() {
+				return val.Format(format)
+			}
 		case *time.Time:
-			if val != nil {
+			if val != nil && !val.IsZero() {
 				return val.Format(format)
 			}
 		}

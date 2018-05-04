@@ -23,6 +23,7 @@ const (
 	EnumActionUpdate  EnumAction = 3
 	EnumActionDelete  EnumAction = 4
 	EnumActionAll     EnumAction = -1
+	EnumActionNone    EnumAction = 0
 
 	EnumMethodGet  EnumMethod = "GET"
 	EnumMethodPost EnumMethod = "POST"
@@ -50,6 +51,7 @@ func (enum EnumAction) Text() string {
 
 var actionMap = map[EnumAction]string{
 	EnumActionAll:     "全部",
+	EnumActionNone:    "未设置",
 	EnumActionCreate:  "创建",
 	EnumActionRetrive: "查找",
 	EnumActionUpdate:  "更新",
@@ -147,7 +149,7 @@ func TestFunc(t *testing.T) {
 	t.Logf("actual value:%v", actual)
 }
 func TestEnum(t *testing.T) {
-	action := EnumActionUpdate
+	action := EnumActionNone
 	method := EnumMethodPost
 	foo := Foo{Name: "Foo结构", Age: 40, IsApproved: true}
 	t.Logf("[%v]action update:%s", action, lib.Text(action))

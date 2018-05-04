@@ -28,6 +28,9 @@ func TestSelect(t *testing.T) {
 		{Text: "选项二", Value: "2", IsSelected: true},
 		{Text: "选项三", Value: "3"},
 	}
-	html = SelectWith(EnumActionAll, "all", options, "", "", mapAttrs, "data-num='12'", "data-pid=\"10\"")
-	t.Logf("EnumActionAll with data Select:%v", html)
+	// html = SelectWith(EnumActionNone, "all", options, "", "", mapAttrs, "data-num='12'", "data-pid=\"10\"")
+	html = SelectWith(EnumActionNone, "all", options, "", "", nil, "data-num='12'", "data-pid=\"10\"")
+	t.Logf("EnumActionNone with data Select:%v", html)
+	html = Select(EnumActionNone, "all", nil, "data-pid=\"100\"")
+	t.Logf("EnumActionNone with data Select:%v", html)
 }
